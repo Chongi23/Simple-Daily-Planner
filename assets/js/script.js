@@ -1,14 +1,40 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
+
+//This is the same as $(function(){});--Just longer for begginer developers.
+$(document).ready(function () {
+  // TODO: Add a listener for click events on the save button.(DONE) This code should
   // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
+  // local storage.
+  $(".saveBtn").on("click", function(){
+
+                //$(this)=.saveBtn.
+                //.siblings oare siblings of "description" class ,that is where user enters text on webpage
+               //to be saved for schedule. 
+        var text = $(this).siblings(".description").val();
+        var time = $(this).parent().attr("id");
+        // The id is the key for different times,The parent of $(this),selected by its id
+        // hour-9,hour-10 etc.
+
+        //Save to local storege
+        localStorage=setItem(text,time);
+        //The setItem()method sets the value of the specific Storage Object item.
+        //The setItem() methos belongs to Storage Object, which can be either a localStorage
+        //object or a sessionStorage...local is requested of us.
+  })
+  
+  //HINT: What does `this` reference in the click listener
+  // function?This is to say: inside of the click event handler,"this" refers to the element that was clicked.
+  //When you put "this"inside of:$(), you "wrap" the JavaScript "this" keyword which adds a number of properties and methods.
+  // How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
+
+  // 05/12/23 -First set of To-Do Done.
+
+  
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the

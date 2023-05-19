@@ -1,15 +1,20 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+
 
 //This is the same as $(function(){});--Just longer for begginer developers.
 $(document).ready(function () {
-
-  
-
-  // TODO: Add a listener for click events on the save button.(DONE) This code should
+   // TODO: Add a listener for click events on the save button.(DONE) This code should
   // use the id in the containing time-block as a key to save the user input in
+  n = new Date();
+  y = n.getFullYear();
+  m = n.getMonth() + 1;
+  d = n.getDate();
+
+document.getElementById("currentDate").innerHTML = m + "/" + d + "/" + y;
+
+
   for (var i = 9; i < 18; i++) {
+
+
     var currentHour = new Date().getHours();
     var colorKey = "";
 
@@ -25,21 +30,26 @@ $(document).ready(function () {
      }
 console.log(currentHour)
 
+
+
+
     var rowDiv = $("<div>").addClass("row time-block "+colorKey).attr("id", "hour " + i)
     var hourDiv = $("<div>").addClass("col-2 col-md-1 hour text-center py-3").text(i)
 
-var textarea = $("<textarea>").addClass("col-8 col-md-10 description").attr("rows","3").val(localStorage.getItem("hour-"+i))
-var btn = $("<button>").addClass("btn saveBtn col-2 col-md-1").attr("aria-label","save")
-   var icon = $("<i>").addClass("fas fa-save").attr("aria-hidden","true")
+    var textarea = $("<textarea>").addClass("col-8 col-md-10 description").attr("rows","3").val(localStorage.getItem("hour-"+i))
+    var btn = $("<button>").addClass("btn saveBtn col-2 col-md-1").attr("aria-label","save")
+    var icon = $("<i>").addClass("fas fa-save").attr("aria-hidden","true")
 
 $(".main").append(rowDiv.append(hourDiv,textarea,btn.append(icon)))
   }
-  // local storage.
-  $(".saveBtn").on("click", function () {
+//Cant figure out how to change hours text to display 9am-5pm.
 
-    //$(this)=.saveBtn.
-    //.siblings oare siblings of "description" class ,that is where user enters text on webpage
-    //to be saved for schedule. 
+  // local storage.
+
+  $(".saveBtn").on("click",function() {
+
+  
+
     var text = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id");
    
@@ -50,7 +60,7 @@ $(".main").append(rowDiv.append(hourDiv,textarea,btn.append(icon)))
 
   })
 
-  //updated,with help of tutor
+  
 
   //HINT: What does `this` reference in the click listener
   // function?This is to say: inside of the click event handler,"this" refers to the element that was clicked.
